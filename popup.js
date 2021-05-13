@@ -57,7 +57,11 @@ async function executeScript() {
 
 async function updateVideoSpeed() {
   await chrome.storage.local.get("speed", value => {
-    let video = document.querySelector('video')
-    video.playbackRate = value.speed
+    // let video = document.querySelector('video')
+    const videos = document.getElementsByTagName('video');
+
+    Object.values(videos).forEach((video) => {
+      video.playbackRate = value.speed; // eslint-disable-line no-param-reassign
+    });
   })
 }
